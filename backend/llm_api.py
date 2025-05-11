@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# 1. Define req function to call SiliconFlow API
+# Define req function to call SiliconFlow API
 def req(system: str, user: str) -> str:
     client = OpenAI(
         api_key=os.getenv("API_KEY"),
@@ -24,7 +24,7 @@ def req(system: str, user: str) -> str:
     )
     return response.choices[0].message.content.strip()
 
-# 2. Initialize Flask app and enable CORS
+# Initialize Flask app and enable CORS
 app = Flask(__name__)
 CORS(app, resources={
     r"/extract_keywords": {"origins": "http://localhost:5173"},
@@ -32,7 +32,7 @@ CORS(app, resources={
     r"/classify_topic":  {"origins": "http://localhost:5173"}
 })
 
-# 3. Keyword extraction endpoint
+# Keyword extraction endpoint
 @app.route("/extract_keywords", methods=["POST"])
 def extract_keywords():
     if not request.is_json:
@@ -42,11 +42,9 @@ def extract_keywords():
     text  = data.get("text", "")
     top_n = data.get("top_n", 5)
 
-    # Log input
     print(f"[extract_keywords] Received text: {text!r}")
     print(f"[extract_keywords] top_n: {top_n}")
 
-    # Input validation
     if not isinstance(text, str) or not text.strip():
         return jsonify({"error": "Text must be a non-empty string"}), 400
     if not isinstance(top_n, int) or top_n < 1:
@@ -83,7 +81,7 @@ def extract_keywords():
     except Exception as e:
         return jsonify({"error": f"Failed to extract keywords: {str(e)}"}), 500
 
-# 4. Text summarization endpoint
+# Text summarization endpoint
 @app.route("/summarize", methods=["POST"])
 def summarize():
     if not request.is_json:
@@ -93,11 +91,9 @@ def summarize():
     text  = data.get("text", "")
     ratio = data.get("ratio", 0.3)
 
-    # Log input
     print(f"[summarize] Received text: {text!r}")
     print(f"[summarize] ratio: {ratio}")
 
-    # Input validation
     if not isinstance(text, str) or not text.strip():
         return jsonify({"error": "Text must be a non-empty string"}), 400
     if not isinstance(ratio, (int, float)) or ratio <= 0 or ratio > 1:
@@ -183,6 +179,6 @@ def classify_topic():
     except Exception as e:
         return jsonify({"error": f"Failed to classify topic: {str(e)}"}), 500
 
-# 5. Start the server
+# Start the server
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
