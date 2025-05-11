@@ -49,7 +49,7 @@ This is a full-stack AI text analysis system for keyword extraction, text summar
 
     ```bash
    API_KEY=your-deepseek-api-key
-   SILICONFLOW_BASE_URL=https://api.deepseek.com/v1/models
+   SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
 5. Start the Flask backend server:
     ```bash
    python llm_api.py
