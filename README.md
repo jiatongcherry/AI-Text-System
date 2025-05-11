@@ -18,11 +18,11 @@ This is a full-stack AI text analysis system for keyword extraction, text summar
 - **API Testing**: Postman
 
 ## Clone the Repository
-1. Navigate to directory where stores the project
+1. Navigate to directory where stores the project:
 `cd /path/to/your/directory`
-2. Clone the repository using Git
+2. Clone the repository using Git:
 `git clone https://github.com/jiatongcherry/AI-Text-System.git`
-3. Navigate to directory where stores the project
+3. Navigate to directory where stores the project:
 `cd AI-Text-System`
 
 ## Setup
