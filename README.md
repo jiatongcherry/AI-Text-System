@@ -19,11 +19,17 @@ This is a full-stack AI text analysis system for keyword extraction, text summar
 
 ## Clone the Repository
 1. Navigate to directory where stores the project:
-`cd /path/to/your/directory`
+
+   ```bash
+   cd /path/to/your/directory
 2. Clone the repository using Git:
-`git clone https://github.com/jiatongcherry/AI-Text-System.git`
+
+   ```bash
+    git clone https://github.com/jiatongcherry/AI-Text-System.git
 3. Navigate to directory where stores the project:
-`cd AI-Text-System`
+
+   ```bash
+    cd AI-Text-System
 
 ## Setup
 ### Backend
