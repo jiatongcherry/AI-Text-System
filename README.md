@@ -48,8 +48,8 @@ This is a full-stack AI text analysis system for keyword extraction, text summar
 4. Set up environment variables in backend/.env:
 
     ```bash
-   DEEPSEEK_API_KEY=your-deepseek-api-key
-   DEEPSEEK_API_URL=https://api.deepseek.com/v1/models
+   API_KEY=your-deepseek-api-key
+   SILICONFLOW_BASE_URL=https://api.deepseek.com/v1/models
 5. Start the Flask backend server:
     ```bash
    python llm_api.py
