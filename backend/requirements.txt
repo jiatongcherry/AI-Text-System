@@ -6,3 +6,7 @@ scikit-learn==1.5.2
 pytextrank==3.3.0
 gunicorn==23.0.0
 dotenv==0.9.9
+transformers==4.44.2
+torch==2.4.1
+numpy==1.26.4
+tokenizers==0.19.1
