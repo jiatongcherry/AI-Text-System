@@ -1,0 +1,7 @@
+flask==3.0.3
+flask-cors==5.0.0
+spacy==3.7.6
+scikit-learn==1.5.2
+pytextrank==3.3.0
+gunicorn==23.0.0
+dotenv==0.9.9
