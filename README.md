@@ -8,7 +8,7 @@ This is a full-stack AI text analysis system for keyword extraction, text summar
 - **Text Summarization**: Generates a concise summary of longer text, capturing the main ideas in a condensed form.
 - **Topic Classification**: Categorizes text into predefined topics (Sports, Politics, Technology, Entertainment)
 
-## Technologies Used
+## Technology Used
 
 - **Frontend**: React.JS
 - **Backend**: Python, Flask
