@@ -33,20 +33,37 @@ This is a full-stack AI text analysis system for keyword extraction, text summar
 
 ## Setup
 ### Backend
-1. Navigate to backend: `cd backend`
+1. Navigate to backend:
+
+    ```bash
+   cd backend
 2. Create and activate a virtual environment:
-`python -m venv venv`
-`source venv/bin/activate  # On Windows: .\venv\Scripts\activate`
-3. Install dependencies: `pip install -r requirements.txt`
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: .\venv\Scripts\activate
+3. Install dependencies:
+    ```bash
+   pip install -r requirements.txt
 4. Set up environment variables in backend/.env:
-`DEEPSEEK_API_KEY=your-deepseek-api-key`
-`DEEPSEEK_API_URL=https://api.deepseek.com/v1/models`
-5. Start the Flask backend server: `python llm_api.py`
+
+    ```bash
+   DEEPSEEK_API_KEY=your-deepseek-api-key
+   DEEPSEEK_API_URL=https://api.deepseek.com/v1/models
+5. Start the Flask backend server:
+    ```bash
+   python llm_api.py
 
 ### Frontend
-1. Navigate to the frontend directory: `cd frontend`
-2. Install dependencies: `npm install`
-3. Start the frontend server: `npm run dev`
+1. Navigate to the frontend directory:
+    ```bash
+   cd frontend
+2. Install dependencies:
+    ```bash
+   npm install
+3. Start the frontend server:
+    ```bash
+   npm run dev
 
 ## Usage
 - Access the web interface at `http://localhost:5173`.
