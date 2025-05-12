@@ -12,7 +12,6 @@ class TextProcessor:
         self.nlp = spacy.load(model_name)
 
 class KeywordExtractor(TextProcessor):
-    # (Unchanged from your original code)
     def __init__(self, corpus_path: str = "data/sample_corpus.txt"):
         super().__init__()
         try:
