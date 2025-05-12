@@ -4,7 +4,6 @@ import json
 import torch
 from modelscope import AutoModelForCausalLM, AutoTokenizer
 
-
 model_name = "Qwen/Qwen2.5-0.5B-Instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
@@ -15,10 +14,9 @@ model = AutoModelForCausalLM.from_pretrained(
 model.eval()
 
 def req_local(system: str, user: str) -> str:
-
     messages = [
-        {"role": "system",  "content": system},
-        {"role": "user",    "content": user}
+        {"role": "system", "content": system},
+        {"role": "user", "content": user}
     ]
     # Generate chat template
     text = tokenizer.apply_chat_template(
@@ -26,7 +24,7 @@ def req_local(system: str, user: str) -> str:
         tokenize=False,
         add_generation_prompt=True
     )
-    # encoding
+    # Encoding
     inputs = tokenizer([text], return_tensors="pt").to(model.device)
 
     with torch.no_grad():
@@ -43,7 +41,7 @@ def req_local(system: str, user: str) -> str:
 app = Flask(__name__)
 CORS(app, resources={
     r"/extract_keywords": {"origins": "http://localhost:5173"},
-    r"/summarize":        {"origins": "http://localhost:5173"}
+    r"/summarize": {"origins": "http://localhost:5173"}
 })
 
 @app.route("/extract_keywords", methods=["POST"])
@@ -51,8 +49,8 @@ def extract_keywords():
     if not request.is_json:
         return jsonify({"error": "Request must be JSON"}), 400
 
-    data  = request.get_json()
-    text  = data.get("text", "")
+    data = request.get_json()
+    text = data.get("text", "")
     top_n = data.get("top_n", 5)
 
     print(f"[extract_keywords] text={text!r}, top_n={top_n}")
@@ -63,11 +61,11 @@ def extract_keywords():
         return jsonify({"error": "top_n must be a positive integer"}), 400
 
     system_prompt = (
-        "你是一个中文关键词提取专家，"
-        "只返回一个 JSON 数组，数组中是提取出的关键词字符串。"
+        "You are an expert in English keyword extraction. "
+        "Return only a JSON array containing the extracted keyword strings."
     )
     user_prompt = (
-        f"请从下面这段文本中提取最重要的 {top_n} 个关键词：\n\n"
+        f"Extract the {top_n} most important keywords from the following text:\n\n"
         f"\"\"\"\n{text}\n\"\"\""
     )
 
@@ -91,8 +89,8 @@ def summarize():
     if not request.is_json:
         return jsonify({"error": "Request must be JSON"}), 400
 
-    data  = request.get_json()
-    text  = data.get("text", "")
+    data = request.get_json()
+    text = data.get("text", "")
     ratio = data.get("ratio", 0.3)
 
     print(f"[summarize] text={text!r}, ratio={ratio}")
@@ -105,9 +103,12 @@ def summarize():
     word_count = len(text.split())
     approx_len = max(20, int(word_count * ratio))
 
-    system_prompt = "你是一个中文摘要专家，输出直接就是摘要内容，不要多余说明。"
+    system_prompt = (
+        "You are an expert in English summarization. "
+        "Output only the summary content, without additional explanations."
+    )
     user_prompt = (
-        f"请为下面这段文本生成一段大约 {approx_len} 词左右的摘要：\n\n"
+        f"Generate a summary of approximately {approx_len} words for the following text:\n\n"
         f"\"\"\"\n{text}\n\"\"\""
     )
 
